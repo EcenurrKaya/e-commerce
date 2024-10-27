@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Rating from "@mui/material/Rating"
+import Rating from "@mui/material/Rating";
 import Textclip from '../../utils/Textclip';
 import { Link } from 'react-router-dom';
 
