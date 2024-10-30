@@ -5,6 +5,7 @@ import { removeFromCart, updateQuantity } from '../../redux/cartSlice'; // Silme
 function Basket() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems)
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart({ id }));
@@ -17,7 +18,7 @@ function Basket() {
   };
 
   return (
-    <div>
+    <div className=''>
       <h2 className='ml-4'>Sepetiniz</h2>
       <Table responsive>
         <thead>
@@ -40,14 +41,14 @@ function Basket() {
                 <td>
                   <div className="d-flex align-items-center">
                     <button 
-                      className='border bg-black text-white rounded-md px-2'
+                      className='border rounded-md px-2'
                       onClick={() => handleQuantityChange(item, item.quantity - 1)} // Miktarı azalt
                     >
                       -
                     </button>
                     <span className='mx-2'>{item.quantity}</span>
                     <button 
-                      className='border bg-black text-white rounded-md px-2'
+                      className='border rounded-md px-2'
                       onClick={() => handleQuantityChange(item, item.quantity + 1)} // Miktarı artır
                     >
                       +
@@ -57,7 +58,7 @@ function Basket() {
                 <td>{item.price} $</td>
                 <td>
                   <button 
-                    className='border bg-black text-white rounded-md px-6'
+                    className='border bg-black text-white rounded-md lg:w-[100px] w-[60px] py-2'
                     onClick={() => handleRemoveFromCart(item.id)}
                   >
                     Sil

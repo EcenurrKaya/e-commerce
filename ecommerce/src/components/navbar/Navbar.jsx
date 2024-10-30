@@ -29,7 +29,7 @@ const NavbarComponent = () => {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-              <Form className="d-flex">
+              <Form className="d-flex w-[50%]">
                   <Form.Control
                     type="search"
                     placeholder="Search"
@@ -54,7 +54,7 @@ const NavbarComponent = () => {
                       }}>{totalQuantity}</span>
                     )}
                   </Nav.Link>
-                  <Nav.Link href="#action2">User</Nav.Link>
+                  <Nav.Link href="/register">User</Nav.Link>
                 </Nav>
                 
               </Offcanvas.Body>

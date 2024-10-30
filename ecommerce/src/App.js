@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import store, { persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Basket from './components/basket/Basket';
+import Register from './components/user/Register';
+import Login from './components/user/Login';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
               <Route path='/products' element={<Products/>}/>
               <Route path='/detail/:id' element={<Detail/>}/> 
               <Route path='/basket' element={<Basket/>}/>
+              <Route path='/register' element={<Register/>}/>
+              <Route path='/login' element={<Login/>}/>
             </Routes>
           </main>
           <Footer/>
