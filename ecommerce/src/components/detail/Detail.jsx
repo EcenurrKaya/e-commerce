@@ -25,7 +25,7 @@ const Detail = () => {
         name: product.name,
         description: product.description, 
         price: product.price,
-        quantity: 1,
+        quantity: quantity,
         image: product.image,
         instock: product.inStock
       }));
@@ -58,7 +58,7 @@ const Detail = () => {
           <button onClick={handleInc} className='w-8 h-auto border flex items-center justify-center text-lg rounded-md'>+</button>
         </div>
         <div className='text-3xl text-orange-600 font-bold'>{product.price} $</div>
-        <button className='rounded-lg p-3 my-2 bg-black text-white w-[250px]'>Sepete Ekle</button>
+        <button className='rounded-lg p-3 my-2 bg-black text-white w-[250px]' onClick={handleAddtoCart}>Sepete Ekle</button>
       </Col>
     </Row>
     <div>

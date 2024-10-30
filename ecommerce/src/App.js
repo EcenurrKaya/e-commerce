@@ -7,11 +7,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Detail from './components/detail/Detail';
 import Products from './components/home/Products';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import store, { persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import Basket from './components/basket/Basket';
 
 function App() {
   return (
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <Router>
       <div className="App">
         <div className='flex flex-col min-h-screen'>
@@ -21,12 +24,14 @@ function App() {
               <Route path='/' element={<Home/>}/>
               <Route path='/products' element={<Products/>}/>
               <Route path='/detail/:id' element={<Detail/>}/> 
+              <Route path='/basket' element={<Basket/>}/>
             </Routes>
           </main>
           <Footer/>
         </div>
       </div>
       </Router>
+      </PersistGate>
     </Provider>
   );
 }
