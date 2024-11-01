@@ -12,15 +12,26 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Basket from './components/basket/Basket';
 import Register from './components/user/Register';
 import Login from './components/user/Login';
+import { useState } from 'react';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLoginSuccess = () =>{
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () =>{
+    setIsLoggedIn(false);
+    alert('Çıkış yapıldı');
+  }
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
       <Router>
       <div className="App">
         <div className='flex flex-col min-h-screen'>
-          <NavbarComponent/>
+          <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout}/>
           <main className='flex-grow'>
             <Routes>
               <Route path='/' element={<Home/>}/>
@@ -28,7 +39,7 @@ function App() {
               <Route path='/detail/:id' element={<Detail/>}/> 
               <Route path='/basket' element={<Basket/>}/>
               <Route path='/register' element={<Register/>}/>
-              <Route path='/login' element={<Login/>}/>
+              <Route path='/login' element={<Login onLoginSuccess={handleLoginSuccess}/>}/>
             </Routes>
           </main>
           <Footer/>

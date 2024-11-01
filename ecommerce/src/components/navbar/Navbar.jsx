@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { FaBasketShopping } from "react-icons/fa6";
+import { FaBasketShopping, FaRegUser } from "react-icons/fa6";
 import { useSelector } from 'react-redux';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 
-
-const NavbarComponent = () => {
+const NavbarComponent = ({isLoggedIn, onLogout}) => {
   const totalQuantity = useSelector((state)=>state.cart.totalQuantity);
+  const navigate = useNavigate();
+  const [showLogout, setShowLogout] = useState(false);
+
+  const handleUserClick = () =>{
+    if(isLoggedIn){
+      setShowLogout(!showLogout);
+    }else{
+      navigate('/login')
+    }
+  };
+
+  const handleLogout = () =>{
+    onLogout();
+  }
   return (
     <>
       {['md'].map((expand) => (
@@ -54,7 +69,20 @@ const NavbarComponent = () => {
                       }}>{totalQuantity}</span>
                     )}
                   </Nav.Link>
-                  <Nav.Link href="/register">User</Nav.Link>
+                  {isLoggedIn ? (
+                  <Nav.Link>
+                  <NavDropdown id="nav-dropdown-dark-example"
+                  title="User"
+                  menuVariant="dark">
+                    <NavDropdown.Item href="#/action-1">Admin</NavDropdown.Item>
+                    <NavDropdown.Item onClick={handleLogout}>Çıkış Yap</NavDropdown.Item>
+                  </NavDropdown>
+                  </Nav.Link>
+                  ):(
+                    <Nav.Link href='/login'>
+                      <FaRegUser className='mt-1 mx-4'/>
+                    </Nav.Link>
+                  )}
                 </Nav>
                 
               </Offcanvas.Body>

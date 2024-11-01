@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -6,10 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { FaEye, FaEyeSlash, FaRegUser } from 'react-icons/fa6';
 import axios from 'axios';
 
-function Login() {
+function Login({onLoginSuccess}) {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const togglePasswordVisibility =(event)=>{
         event.preventDefault();
@@ -22,9 +24,11 @@ function Login() {
               email,
               password
           });
-          alert(response.data.message); // Başarılı giriş mesajı
+          alert(response.data.message);
+          onLoginSuccess();
+          navigate('/basket');
       } catch (error) {
-          console.error(error.response?.data?.message || 'Giriş işlemi sırasında hata oluştu'); // Hata mesajını göster
+          console.error(error.response?.data?.message || 'Giriş işlemi sırasında hata oluştu');
       }
   }
   return (
